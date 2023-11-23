@@ -11,6 +11,8 @@ public class WaitAMinute {
     QueueMenu frameQueue;
 
     WaitAMinute() {
+        FontManager.loadFont();
+
         frameEmp = new EmployeeMenu();
         frameEmp.setTitle("Queue Lists");
         frameEmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

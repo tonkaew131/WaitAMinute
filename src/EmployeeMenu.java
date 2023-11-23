@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class EmployeeMenu extends JFrame {
 
         detailPanel.add(Box.createRigidArea(new Dimension(5, 20)));
 
+        displayedCusName.setFont(FontManager.ItimCursiveDefaultSize);
         detailPanel.add(displayedCusName);
         detailPanel.add(Box.createRigidArea(new Dimension(5, 10)));
 
@@ -121,10 +123,18 @@ public class EmployeeMenu extends JFrame {
 
         ArrayList<CustomerData> cds = waitAMinute.getAllCustomers();
         if (cds.size() == 0) {
-            JLabel text = new JLabel("คิวว่างละจ้า \uD83D\uDE29", SwingConstants.CENTER);
-            text.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-            queueTable.setLayout(new BorderLayout());
-            queueTable.add(text, BorderLayout.CENTER);
+            JLabel text = new JLabel("คิวว่างละจ้า", SwingConstants.CENTER);
+            text.setFont(FontManager.ItimCursive.deriveFont(24f));
+            JLabel emoji = new JLabel("\ud83d\ude29", SwingConstants.CENTER);
+            emoji.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 48));
+
+            queueTable.setLayout(new BoxLayout(queueTable, BoxLayout.Y_AXIS));
+            text.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+            emoji.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+            queueTable.add(Box.createVerticalGlue());
+            queueTable.add(text);
+            queueTable.add(emoji);
+            queueTable.add(Box.createVerticalGlue());
             return;
         }
 
