@@ -5,9 +5,10 @@ public class WaitAMinute {
     QueueADT queueSmall = new Queue();
     QueueADT queueMedium = new Queue();
     QueueADT queueLarge = new Queue();
-    int totalQueue = 0;
+    int totalQueue = 1;
     ArrayList<CustomerData> allCustomers = new ArrayList<>();
     EmployeeMenu frameEmp;
+    QueueMenu frameQueue;
 
     WaitAMinute() {
         frameEmp = new EmployeeMenu();
@@ -18,6 +19,9 @@ public class WaitAMinute {
         frameEmp.setLocationRelativeTo(null);
         frameEmp.setVisible(true);
         frameEmp.setWaitAMinute(this);
+
+        frameQueue = new QueueMenu();
+        frameQueue.setWaitAMinute(this);
     }
 
     public static void main(String args[]) {
@@ -35,14 +39,16 @@ public class WaitAMinute {
 
         if (tableSize == CustomerData.TableSize.LARGE) {
             queueLarge.enqueue(cd);
-            System.out.println(queueLarge.length());
+//            System.out.println(queueLarge.length());
         } else if (tableSize == CustomerData.TableSize.MEDIUM) {
             queueMedium.enqueue(cd);
-            System.out.println(queueMedium.length());
+//            System.out.println(queueMedium.length());
         } else {
             queueSmall.enqueue(cd);
-            System.out.println(queueSmall.length());
+//            System.out.println(queueSmall.length());
         }
+
+        frameQueue.updateQueue("");
     }
 
     public ArrayList<CustomerData> getAllCustomers() {
@@ -50,6 +56,8 @@ public class WaitAMinute {
     }
 
     public void dequeue(String s) throws Exception {
+        frameQueue.updateQueue(s);
+
         CustomerData.TableSize tableSize = CustomerData.toTableSize(s);
         CustomerData cd;
         if (tableSize == CustomerData.TableSize.SMALL) {
@@ -63,6 +71,30 @@ public class WaitAMinute {
         allCustomers.remove(cd);
         frameEmp.setDisplayedCustomer(cd);
         frameEmp.drawAllQueues();
+
+        frameQueue.updateQueue("");
     }
 
+    public CustomerData front(String s) throws Exception {
+        CustomerData.TableSize tableSize = CustomerData.toTableSize(s);
+        if (tableSize == CustomerData.TableSize.LARGE) {
+            return (CustomerData) queueLarge.front();
+        } else if (tableSize == CustomerData.TableSize.MEDIUM) {
+            return (CustomerData) queueMedium.front();
+        } else {
+            return (CustomerData) queueSmall.front();
+        }
+    }
+
+    public QueueADT getQueueSmall() {
+        return queueSmall;
+    }
+
+    public QueueADT getQueueMedium() {
+        return queueMedium;
+    }
+
+    public QueueADT getQueueLarge() {
+        return queueLarge;
+    }
 }
