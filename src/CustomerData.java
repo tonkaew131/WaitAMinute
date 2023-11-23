@@ -87,6 +87,6 @@ public class CustomerData {
             return new Color(198, 199, 255);
         }
 
-        return new Color(168, 231, 255);
+        return new Color(203, 249, 255);
     }
 }

@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AddCustomerMenu extends JFrame {
     WaitAMinute waitAMinute;
@@ -54,7 +52,7 @@ public class AddCustomerMenu extends JFrame {
         add(addBtn);
         addBtn.addActionListener((e) -> {
             try {
-                waitAMinute.addCustommer(nameJT.getText(), phoneJT.getText(), sizeJT.getText(), (int) Integer.parseInt(amountJT.getText()));
+                waitAMinute.addCustomer(nameJT.getText(), phoneJT.getText(), sizeJT.getText(), (int) Integer.parseInt(amountJT.getText()));
 
                 nameJT.setText("");
                 phoneJT.setText("");

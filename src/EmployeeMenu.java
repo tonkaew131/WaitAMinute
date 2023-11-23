@@ -19,12 +19,16 @@ public class EmployeeMenu extends JFrame {
     JPanel queueTable = new JPanel();
 
     public EmployeeMenu() {
-        setLayout(new GridLayout(1, 2, 10, 10));
+        setLayout(new GridLayout(1, 2, 0, 0));
 
-        queueTable.setBackground(Color.WHITE);
+        queueTable.setBackground(new Color(255, 227, 255));
+        queueTable.setBorder(new EmptyBorder(10, 10, 10, 10));
         add(queueTable);
 
+        Color bgColor = new Color(255, 254, 202);
+
         JPanel controlPanel = new JPanel();
+        controlPanel.setBackground(bgColor);
         controlPanel.setLayout(new BorderLayout());
 
         JLabel logoLabel = new JLabel(getLogo());
@@ -32,6 +36,7 @@ public class EmployeeMenu extends JFrame {
         controlPanel.add(logoLabel, BorderLayout.NORTH);
 
         JPanel detailPanel = new JPanel();
+        detailPanel.setBackground(bgColor);
         detailPanel.setLayout(new BoxLayout(detailPanel, BoxLayout.Y_AXIS));
 
         detailPanel.add(Box.createRigidArea(new Dimension(5, 20)));
@@ -51,16 +56,56 @@ public class EmployeeMenu extends JFrame {
         controlPanel.add(detailPanel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(bgColor);
         buttonPanel.setBorder(new EmptyBorder(0, 0, 50, 0));
-        buttonPanel.setLayout(new GridLayout(1, 2, 10, 0));
+        buttonPanel.setLayout(new GridLayout(1, 4, 10, 0));
         JButton appointmentBtn = new JButton("จอง");
         appointmentBtn.addActionListener((e) -> {
             addNewQueue();
         });
         appointmentBtn.setPreferredSize(new Dimension(50, 50));
-        JButton callBtn = new JButton("เรียก");
         buttonPanel.add(appointmentBtn);
-        buttonPanel.add(callBtn);
+
+        JButton callSmallBtn = new JButton("S");
+        callSmallBtn.setBackground(new Color(244, 200, 244));
+        callSmallBtn.setOpaque(true);
+        callSmallBtn.setBorderPainted(false);
+        callSmallBtn.addActionListener((e) -> {
+            try {
+                waitAMinute.dequeue("S");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        buttonPanel.add(callSmallBtn);
+
+        JButton callMediumBtn = new JButton("M");
+        callMediumBtn.setBackground(new Color(198, 199, 255));
+        callMediumBtn.setOpaque(true);
+        callMediumBtn.setBorderPainted(false);
+        callMediumBtn.addActionListener((e) -> {
+            try {
+                waitAMinute.dequeue("M");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        buttonPanel.add(callMediumBtn);
+
+        JButton callLargeBtn = new JButton("L");
+        callLargeBtn.setBackground(new Color(203, 249, 255));
+        callLargeBtn.setOpaque(true);
+        callLargeBtn.setBorderPainted(false);
+        callLargeBtn.addActionListener((e) -> {
+            try {
+                waitAMinute.dequeue("L");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        buttonPanel.add(callLargeBtn);
+
+
         controlPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         add(controlPanel);
@@ -75,6 +120,14 @@ public class EmployeeMenu extends JFrame {
 //        System.out.println("Drawing!");
 
         ArrayList<CustomerData> cds = waitAMinute.getAllCustomers();
+        if (cds.size() == 0) {
+            JLabel text = new JLabel("คิวว่างละจ้า \uD83D\uDE29", SwingConstants.CENTER);
+            text.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
+            queueTable.setLayout(new BorderLayout());
+            queueTable.add(text, BorderLayout.CENTER);
+            return;
+        }
+
         for (int i = 0; i < cds.size(); i++) {
             JButton rows = new JButton(cds.get(i).getQueueId());
             rows.setBackground(cds.get(i).getColor());
@@ -107,7 +160,7 @@ public class EmployeeMenu extends JFrame {
         try {
             imageIcon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/resources/logo.png")));
             Image image = imageIcon.getImage();
-            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
             imageIcon = new ImageIcon(newimg);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -117,6 +170,8 @@ public class EmployeeMenu extends JFrame {
 
     public void setWaitAMinute(WaitAMinute waitAMinute) {
         this.waitAMinute = waitAMinute;
+
+        drawAllQueues();
     }
 }
 

@@ -24,7 +24,7 @@ public class WaitAMinute {
         WaitAMinute waitAMinute = new WaitAMinute();
     }
 
-    public void addCustommer(String name, String phoneNumber, String tableSizeStr, int amount) throws Exception {
+    public void addCustomer(String name, String phoneNumber, String tableSizeStr, int amount) throws Exception {
         CustomerData.TableSize tableSize = CustomerData.toTableSize(tableSizeStr);
         CustomerData cd = new CustomerData(
                 tableSizeStr, name, phoneNumber, String.valueOf(totalQueue), amount
@@ -48,4 +48,21 @@ public class WaitAMinute {
     public ArrayList<CustomerData> getAllCustomers() {
         return allCustomers;
     }
+
+    public void dequeue(String s) throws Exception {
+        CustomerData.TableSize tableSize = CustomerData.toTableSize(s);
+        CustomerData cd;
+        if (tableSize == CustomerData.TableSize.SMALL) {
+            cd = (CustomerData) queueSmall.dequeue();
+        } else if (tableSize == CustomerData.TableSize.MEDIUM) {
+            cd = (CustomerData) queueMedium.dequeue();
+        } else {
+            cd = (CustomerData) queueLarge.dequeue();
+        }
+
+        allCustomers.remove(cd);
+        frameEmp.setDisplayedCustomer(cd);
+        frameEmp.drawAllQueues();
+    }
+
 }
