@@ -31,11 +31,11 @@ public class QueueMenu extends JFrame {
         amountDetailPanel.setLayout(new BoxLayout(amountDetailPanel, BoxLayout.Y_AXIS));
 
         JLabel amountText = new JLabel("จำนวนคิว", SwingConstants.CENTER);
+        amountText.setFont(FontManager.ItimCursive.deriveFont(24f));
         amountText.setAlignmentX(Component.CENTER_ALIGNMENT);
-        amountText.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
         amountDetailPanel.add(amountText);
 
-        totalWaitQueue.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 48));
+        totalWaitQueue.setFont(FontManager.ItimCursive.deriveFont(48f));
         amountDetailPanel.add(totalWaitQueue);
 
         amountPanel.add(amountDetailPanel);
@@ -53,35 +53,35 @@ public class QueueMenu extends JFrame {
         frontPanel.setBorder(new EmptyBorder(10, 0, 10, 10));
 
         JLabel smallLabel = new JLabel("โต๊ะเล็ก");
-        smallLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+        smallLabel.setFont(FontManager.ItimCursive.deriveFont(30f));
         frontSmallName.setBackground(new Color(244, 200, 244));
         frontSmallName.setOpaque(true);
         smallLabel.setBorder(new EmptyBorder(0, 50, 0, 0));
         smallLabel.setBackground(new Color(244, 200, 244));
         smallLabel.setOpaque(true);
-        frontSmallName.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 48));
+        frontSmallName.setFont(FontManager.ItimCursive.deriveFont(48f));
         frontPanel.add(smallLabel);
         frontPanel.add(frontSmallName);
 
         JLabel mediumLabel = new JLabel("โต๊ะกลาง");
-        mediumLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+        mediumLabel.setFont(FontManager.ItimCursive.deriveFont(30f));
         frontMediumName.setBackground(new Color(198, 199, 255));
         frontMediumName.setOpaque(true);
         mediumLabel.setBorder(new EmptyBorder(0, 50, 0, 0));
         mediumLabel.setBackground(new Color(198, 199, 255));
         mediumLabel.setOpaque(true);
-        frontMediumName.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 48));
+        frontMediumName.setFont(FontManager.ItimCursive.deriveFont(48f));
         frontPanel.add(mediumLabel);
         frontPanel.add(frontMediumName);
 
         JLabel largeLabel = new JLabel("โต๊ะใหญ่");
-        largeLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+        largeLabel.setFont(FontManager.ItimCursive.deriveFont(30f));
         frontLargeName.setBackground(new Color(203, 249, 255));
         frontLargeName.setOpaque(true);
         largeLabel.setBorder(new EmptyBorder(0, 50, 0, 0));
         largeLabel.setBackground(new Color(203, 249, 255));
         largeLabel.setOpaque(true);
-        frontLargeName.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 48));
+        frontLargeName.setFont(FontManager.ItimCursive.deriveFont(48f));
         frontPanel.add(largeLabel);
         frontPanel.add(frontLargeName);
 

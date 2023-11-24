@@ -46,12 +46,15 @@ public class EmployeeMenu extends JFrame {
         detailPanel.add(displayedCusName);
         detailPanel.add(Box.createRigidArea(new Dimension(5, 10)));
 
+        displayedCusPhone.setFont(FontManager.ItimCursiveDefaultSize);
         detailPanel.add(displayedCusPhone);
         detailPanel.add(Box.createRigidArea(new Dimension(5, 10)));
 
+        displayedCusSize.setFont(FontManager.ItimCursiveDefaultSize);
         detailPanel.add(displayedCusSize);
         detailPanel.add(Box.createRigidArea(new Dimension(5, 10)));
 
+        displayedCusAmount.setFont(FontManager.ItimCursiveDefaultSize);
         detailPanel.add(displayedCusAmount);
         detailPanel.add(Box.createRigidArea(new Dimension(5, 10)));
 
@@ -62,6 +65,7 @@ public class EmployeeMenu extends JFrame {
         buttonPanel.setBorder(new EmptyBorder(0, 0, 50, 0));
         buttonPanel.setLayout(new GridLayout(1, 4, 10, 0));
         JButton appointmentBtn = new JButton("จอง");
+        appointmentBtn.setFont(FontManager.ItimCursiveDefaultSize);
         appointmentBtn.addActionListener((e) -> {
             addNewQueue();
         });
@@ -69,6 +73,7 @@ public class EmployeeMenu extends JFrame {
         buttonPanel.add(appointmentBtn);
 
         JButton callSmallBtn = new JButton("S");
+        callSmallBtn.setFont(FontManager.ItimCursiveDefaultSize);
         callSmallBtn.setBackground(new Color(244, 200, 244));
         callSmallBtn.setOpaque(true);
         callSmallBtn.setBorderPainted(false);
@@ -82,6 +87,7 @@ public class EmployeeMenu extends JFrame {
         buttonPanel.add(callSmallBtn);
 
         JButton callMediumBtn = new JButton("M");
+        callMediumBtn.setFont(FontManager.ItimCursiveDefaultSize);
         callMediumBtn.setBackground(new Color(198, 199, 255));
         callMediumBtn.setOpaque(true);
         callMediumBtn.setBorderPainted(false);
@@ -95,6 +101,7 @@ public class EmployeeMenu extends JFrame {
         buttonPanel.add(callMediumBtn);
 
         JButton callLargeBtn = new JButton("L");
+        callLargeBtn.setFont(FontManager.ItimCursiveDefaultSize);
         callLargeBtn.setBackground(new Color(203, 249, 255));
         callLargeBtn.setOpaque(true);
         callLargeBtn.setBorderPainted(false);
